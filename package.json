@@ -1,0 +1,17 @@
+{
+    "name": "@runtheons/authorizzation",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {},
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/Zexal0807/runtheons-authorizzation.git"
+    },
+    "author": "Zexal0807",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/Zexal0807/runtheons-authorizzation/issues"
+    },
+    "homepage": "https://github.com/Zexal0807/runtheons-authorizzation#readme"
+}
