@@ -26,8 +26,10 @@ module.exports = class Authorizzation {
     });
 
     static merge(arr) {
-        for (let i = 2; i < arr.length; i++) {
-            Object.assign(arr[0], arr[i]);
+        for (let i = 1; i < arr.length; i++) {
+            Object.keys(arr[0]).forEach(k => {
+                arr[0][k] = arr[0][k] && arr[i][k];
+            })
         }
         return arr[0];
     }
