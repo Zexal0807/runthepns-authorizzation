@@ -1,18 +1,18 @@
 module.exports = class AuthorizzationToken {
 
-    option = {
-        mustBeLogged: false,
-        mustBeNotLogged: false,
+	option = {
+		mustBeLogged: false,
+		mustBeNotLogged: false,
 
-        mustBeAthlete: false,
-        mustBeCoach: false,
-        mustBeProfessional: false
+		mustBeAthlete: false,
+		mustBeCoach: false,
+		mustBeProfessional: false
 
-    };
+	};
 
-    constructor(obj = {}) {
-        Object.keys(obj).forEach(k => {
-            this.option[k] = obj[k];
-        });
-    }
+	constructor(obj = {}) {
+		Object.keys(obj).forEach(k => {
+			this.option[k] = obj[k];
+		});
+	}
 }
