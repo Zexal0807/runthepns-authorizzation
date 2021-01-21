@@ -1,8 +1,5 @@
 module.exports = new class Authorizzation {
 
-	authorizzationHandle = {}
-	errorHandle = {}
-
 	add(name, obj) {
 		obj = this.castObject(obj);
 		this[name] = obj;
