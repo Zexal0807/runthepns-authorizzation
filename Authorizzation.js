@@ -1,40 +1,28 @@
-const AuthorizzationToken = require("./AuthorizzationToken");
+module.exports = new class Authorizzation {
 
-module.exports = class Authorizzation {
+	authorizzationHandle = {}
+	errorHandle = {}
 
-	static NOT_LOGGED = new AuthorizzationToken({
-		mustBeNotLogged: true
-	});
-
-	static LOGGED = new AuthorizzationToken({
-		mustBeLogged: true
-	});
-
-	static LOGGED_AS_ATHLETE = new AuthorizzationToken({
-		mustBeLogged: true,
-		mustBeAthlete: true
-	});
-
-	static LOGGED_AS_COACH = new AuthorizzationToken({
-		mustBeLogged: true,
-		mustBeCoach: true
-	});
-
-	static LOGGED_AS_PROFESSIONAL = new AuthorizzationToken({
-		mustBeLogged: true,
-		mustBeProfessional: true
-	});
-
-	static merge(arr) {
-		for (let i = 1; i < arr.length; i++) {
-			Object.keys(arr[0]).forEach(k => {
-				arr[0][k] = arr[0][k] && arr[i][k];
-			})
-		}
-		return arr[0];
+	add(name, obj) {
+		obj = this.castObject(obj);
+		this[name] = obj;
 	}
 
-	static execute(requiredToken, session) {
+	castObject(obj) {
+		var defaultObj = {
+			check: (session) => {
+				return session != undefined;
+			},
+			success: () => {},
+			error: () => {
+				return "";
+			}
+		};
+		return Object.assign(defaultObj, obj);
+	}
+
+
+	check(requiredToken, session) {
 		var ret = {
 			status: true,
 			errors: []
