@@ -10,79 +10,36 @@ module.exports = new class Authorizzation {
 
 	castObject(obj) {
 		var defaultObj = {
-			check: (session) => {
-				return session != undefined;
-			},
+			check: (session) => { return session != undefined; },
 			success: () => {},
-			error: () => {
-				return "";
-			}
+			error: () => { return null; }
 		};
 		return Object.assign(defaultObj, obj);
 	}
 
 
-	check(requiredToken, session) {
+	check(requiredConfig, session) {
+		if (!Array.isArray(requiredConfig)) {
+			requiredConfig = [requiredConfig];
+		}
+
 		var ret = {
 			status: true,
 			errors: []
 		}
-		if (requiredToken.mustBeNotLogged)
-			checkMustBeNotLogged(session, ret);
 
-		if (requiredToken.mustBeLogged)
-			checkMustBeLogged(session, ret);
-
-		if (requiredToken.mustBeAthlete)
-			checkMustBeAthlete(session, ret);
-
-		if (requiredToken.mustBeCoach)
-			checkMustBeCoach(session, ret);
-
-		if (requiredToken.mustBeProfessional)
-			checkMustBeProfessional(session, ret);
+		requiredConfig.forEach(el => {
+			if (el.check(session)) {
+				el.success();
+			} else {
+				ret.status = false;
+				var err = el.error();
+				if (err != null) {
+					ret.errors.push(err);
+				}
+			}
+		});
 
 		return ret;
 	}
-
-	//Check if must be not logged
-	checkMustBeNotLogged(session, ret) {
-		if (session != undefined && session != {}) {
-			ret.status = false;
-			ret.errors.push({ code: 1, msg: "Must be not logged in" });
-		}
-	}
-
-	//Check if must be logged
-	checkMustBeLogged(session, ret) {
-		if (session == undefined || session == {}) {
-			ret.status = false;
-			ret.errors.push({ code: 2, msg: "Must be logged in" });
-		}
-	}
-
-	//Check if must be a athlete
-	checkMustBeAthlete(session, ret) {
-		if (session == undefined || session.type != 2) {
-			ret.status = false;
-			ret.errors.push({ code: 3, msg: "Must be logged as athlete" });
-		}
-	}
-
-	//Check if must be a coach
-	checkMustBeCoach(session, ret) {
-		if (session == undefined || session.type != 4) {
-			ret.status = false;
-			ret.errors.push({ code: 3, msg: "Must be logged as coach" });
-		}
-	}
-
-	//Check if must be a professional
-	checkMustBeProfessional(session, ret) {
-		if (session == undefined || session.type != 3) {
-			ret.status = false;
-			ret.errors.push({ code: 3, msg: "Must be logged as professional" });
-		}
-	}
-
 }
