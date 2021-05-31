@@ -14,8 +14,7 @@ module.exports = new class Authorizzation {
 		return Object.assign(defaultObj, obj);
 	}
 
-
-	check(requiredConfig, session) {
+	check(requiredConfig, session, req) {
 		if (!Array.isArray(requiredConfig)) {
 			requiredConfig = [requiredConfig];
 		}
@@ -26,7 +25,7 @@ module.exports = new class Authorizzation {
 		}
 
 		requiredConfig.forEach(el => {
-			if (el.check(session)) {
+			if (el.check(session, req)) {
 				el.success();
 			} else {
 				ret.status = false;
