@@ -1,14 +1,14 @@
 # runtheons-authorizzation
 
-- [Introduction](https://github.com/Zexal0807/runtheons-authorizzation#introduction "Introduction")
-- [Getting started](https://github.com/Zexal0807/runtheons-authorizzation#getting-started "Getting started")
-	- [Prerequisites](https://github.com/Zexal0807/runtheons-authorizzation#prerequisites "Prerequisites")
-	- [Installation](https://github.com/Zexal0807/runtheons-authorizzation#installation "Installation")
-- [Use](https://github.com/Zexal0807/runtheons-authorizzation#use "Use")
-- [Example of use](https://github.com/Zexal0807/runtheons-authorizzation#example-of-use "Example of use")
-- [Summary System structure](https://github.com/Zexal0807/runtheons-authorizzation#summary-system-structure "Summary System structure")
+- [Introduction](https://github.com/Zexal0807/runtheons-authorizzation#introduction)
+- [Getting started](https://github.com/Zexal0807/runtheons-authorizzation#getting-started)
+  - [Prerequisites](https://github.com/Zexal0807/runtheons-authorizzation#prerequisites)
+  - [Installation](https://github.com/Zexal0807/runtheons-authorizzation#installation)
+- [Use](https://github.com/Zexal0807/runtheons-authorizzation#use)
+- [Example of use](https://github.com/Zexal0807/runtheons-authorizzation#example-of-use)
 
 # Introduction
+
 This reposity manage the autorizzations of Runtheons BackEnd
 The autorizzation is manage as a object (AuthorizzationToken), than explain which autorizzations you must have
 Each autorizzations is calculate in a specific functions inside Authorizzation class
@@ -34,34 +34,50 @@ Use add method for add a new athorizzation
 ```javascript
 void Authorizzation.add(String name, Object auth)
 ```
+
+In auth object you must specific:
+
+| Key   | Description                                                                                                     |
+| ----- | --------------------------------------------------------------------------------------------------------------- |
+| check | Is a function that recive a object contains the session data and the Express.Request, and must return a boolean |
+| error | Is a function that will be call when check return false                                                         |
+
 In auth object you can specific:
-|Key|Description|
-|check|Is a function that recive a object contains the session data, and must return a boolean|
-|error|Is a function that will be call when check return false|
-|success|Is a function that will be call when check return true|
+| Key | Description |
+| ------- | --------------------------------------------------------------------------------------------------------------- |
+| success | Is a function that will be call when check return true |
 
 And then export the custom authorizzation for use the creted constant
 
 For check an authorizzation use check method
 
 ```javascript
-boolean Authorizzation.check(String[] const, Object session)
+object Authorizzation.check(String[] const, Object session)
 ```
+
+It return an object with `status` and an array of error (specify in error function of the auth)
 
 # Example of use
 
 Create an `auth.js` file like
 
 ```javascript
-const Authorizzation = require("@runtheons/authorizzation");
+const Authorizzation = require('@runtheons/authorizzation');
 
 var newAuth = {
-	check : (session) => {
-		return session == {};
+	check: (session, req) => {
+		return session == undefined;
+	},
+	success: () => {
+		console.log('Authorizzation success');
+	},
+	error: () => {
+		console.log('Authorizzation fail');
+		return 'You are not logged';
 	}
 };
 
-Authorizzation.add("LOGGED", newAuth);
+Authorizzation.add('NOT_LOGGED', newAuth);
 
 module.exports = Authorizzation;
 ```
@@ -74,7 +90,7 @@ const customAuthorizzation = require("./auth.js");
 
 var session = getSession();
 
-var isAuthorizzation = customAuthorizzation.check([ customAuthorizzation.LOGGED], session);
+var isAuthorizzation = customAuthorizzation.check([ customAuthorizzation.NOT_LOGGED], session);
 
 console.log(isAuthorizzation);
 
@@ -84,8 +100,3 @@ Result:
 	errors: []
 }
 ```
-
-# Summary System structure
-
-- root
-	- index.js > Export of the authorizzation checker
