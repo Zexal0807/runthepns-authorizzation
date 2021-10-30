@@ -1,15 +1,18 @@
-module.exports = new class Authorizzation {
-
+module.exports = new(class Authorizzation {
 	add(name, obj) {
-		obj = this.castObject(obj);
+		obj = this._castObject(obj);
 		this[name] = obj;
 	}
 
-	castObject(obj) {
+	_castObject(obj) {
 		var defaultObj = {
-			check: (session) => { return session != undefined; },
+			check: (session, req) => {
+				return session != undefined;
+			},
 			success: () => {},
-			error: () => { return null; }
+			error: () => {
+				return null;
+			}
 		};
 		return Object.assign(defaultObj, obj);
 	}
@@ -22,9 +25,9 @@ module.exports = new class Authorizzation {
 		var ret = {
 			status: true,
 			errors: []
-		}
+		};
 
-		requiredConfig.forEach(el => {
+		requiredConfig.forEach((el) => {
 			if (el.check(session, req)) {
 				el.success();
 			} else {
@@ -38,4 +41,4 @@ module.exports = new class Authorizzation {
 
 		return ret;
 	}
-}
+})();
