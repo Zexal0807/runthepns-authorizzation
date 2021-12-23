@@ -1,1 +1,1 @@
-module.exports = require("./Authorizzation");
+module.exports = require('./src/Authorizzation');
