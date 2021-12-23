@@ -24,6 +24,7 @@ If the aforementioned documentation is not clear or contains errors, please repo
 ## Installation
 
 1. `npm install https://github.com/Zexal0807/runtheons-authorizzation` to add the package to the project
+2. `npm install` to install dependencies
 
 # Use
 
@@ -52,7 +53,7 @@ And then export the custom authorizzation for use the creted constant
 For check an authorizzation use check method
 
 ```javascript
-object Authorizzation.check(String[] const, Object session)
+object Authorizzation.check(AuthorizzationRecord[] records, Object session, Express.Req req)
 ```
 
 It return an object with `status` and an array of error (specify in error function of the auth)
