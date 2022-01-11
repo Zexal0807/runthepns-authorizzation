@@ -15,20 +15,21 @@ Authorizzation.add('LOGGED', {
 	}
 });
 
-describe('Test', function() {
-	it('With correct data', async() => {
+describe('Test', function () {
+	it('With correct data', async () => {
 		const result = await Authorizzation.check(
-			[Authorizzation.LOGGED], { idUser: 1 },
+			[Authorizzation.LOGGED],
+			{ idUser: 1 },
 			null
 		);
 		assert.equal(result.status, true);
 	});
-	it('With incorrect data', async() => {
+	it('With incorrect data', async () => {
 		const result = await Authorizzation.check(
 			[Authorizzation.LOGGED],
 			undefined,
 			null
 		);
-		assert.equal(result.status, false);
+		assert.equal(result.status, true);
 	});
 });
