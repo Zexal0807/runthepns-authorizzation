@@ -30,6 +30,6 @@ describe('Test', function () {
 			undefined,
 			null
 		);
-		assert.equal(result.status, true);
+		assert.equal(result.status, false);
 	});
 });
