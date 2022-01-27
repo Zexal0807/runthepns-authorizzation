@@ -1,11 +1,11 @@
-# runtheons-authorizzation
+# Runtheons Authorizzation
 
-- [Introduction](https://github.com/Zexal0807/runtheons-authorizzation#introduction)
-- [Getting started](https://github.com/Zexal0807/runtheons-authorizzation#getting-started)
-  - [Prerequisites](https://github.com/Zexal0807/runtheons-authorizzation#prerequisites)
-  - [Installation](https://github.com/Zexal0807/runtheons-authorizzation#installation)
-- [Use](https://github.com/Zexal0807/runtheons-authorizzation#use)
-- [Example of use](https://github.com/Zexal0807/runtheons-authorizzation#example-of-use)
+- [Introduction](https://github.com/Runtheons/runtheons-authorizzation#introduction)
+- [Getting started](https://github.com/Runtheons/runtheons-authorizzation#getting-started)
+  - [Prerequisites](https://github.com/Runtheons/runtheons-authorizzation#prerequisites)
+  - [Installation](https://github.com/Runtheons/runtheons-authorizzation#installation)
+- [Use](https://github.com/Runtheons/runtheons-authorizzation#use)
+- [Example of use](https://github.com/Runtheons/runtheons-authorizzation#example-of-use)
 
 # Introduction
 
@@ -23,7 +23,7 @@ If the aforementioned documentation is not clear or contains errors, please repo
 
 ## Installation
 
-1. `npm install https://github.com/Zexal0807/runtheons-authorizzation` to add the package to the project
+1. `npm install https://github.com/Runtheons/runtheons-authorizzation#v1.4.0` to add the package to the project
 2. `npm install` to install dependencies
 
 # Use

@@ -1,23 +1,24 @@
 {
 	"name": "@runtheons/authorizzation",
-	"version": "1.3.0",
+	"version": "1.4.0",
 	"description": "",
 	"main": "index.js",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/Runtheons/runtheons-authorizzation.git"
+	},
+	"author": "Zexal0807",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/Runtheons/runtheons-authorizzation/issues"
+	},
+	"homepage": "https://github.com/Runtheons/runtheons-authorizzation#readme",
+	"dependencies": {},
 	"devDependencies": {
 		"jest": "^27.4.5"
 	},
 	"scripts": {
 		"test": "jest --verbose ./test/*",
 		"testOnFile": "jest --json --outputFile=test.json ./test/*"
-	},
-	"repository": {
-		"type": "git",
-		"url": "git+https://github.com/Zexal0807/runtheons-authorizzation.git"
-	},
-	"author": "Zexal0807",
-	"license": "ISC",
-	"bugs": {
-		"url": "https://github.com/Zexal0807/runtheons-authorizzation/issues"
-	},
-	"homepage": "https://github.com/Zexal0807/runtheons-authorizzation#readme"
+	}
 }
