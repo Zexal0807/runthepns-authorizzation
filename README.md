@@ -24,15 +24,16 @@ If the aforementioned documentation is not clear or contains errors, please repo
 ## Installation
 
 1. `npm install https://github.com/Runtheons/runtheons-authorizzation#v1.4.0` to add the package to the project
-2. `npm install` to install dependencies
 
 # Use
 
-In your project create an `auth.js` file, where yuo specific the list of the avaible authorizzation
+In your project create an `MyAuth.js` file, where yuo specific the list of the avaible authorizzation
 
 Use add method for add a new athorizzation
 
 ```javascript
+const Authorizzation = require('@runtheons/authorizzation');
+
 void Authorizzation.add(String name, Object auth)
 ```
 
@@ -87,11 +88,11 @@ Then in your Express.js project
 
 ```javascript
 
-const customAuthorizzation = require("./auth.js");
+const MyAuth = require("./MyAuth.js");
 
 var session = getSession();
 
-var isAuthorizzation = customAuthorizzation.check([ customAuthorizzation.NOT_LOGGED], session);
+var isAuthorizzation = customAuthorizzation.check([ MyAuth.NOT_LOGGED], session);
 
 console.log(isAuthorizzation);
 
