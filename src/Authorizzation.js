@@ -14,7 +14,7 @@ module.exports = new(class Authorizzation {
 				(record) => !(record instanceof AuthorizzationRecord)
 			).length != 0
 		) {
-			console.error(
+			throw new Error(
 				'Error : some required Authorizzation are not an AuthorizzationRecord'
 			);
 		}

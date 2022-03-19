@@ -1,3 +1,4 @@
 # Package modules
 node_modules/*
 Package-lock.json
+coverage/*
