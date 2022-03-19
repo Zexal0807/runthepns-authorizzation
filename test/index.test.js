@@ -20,6 +20,10 @@ Authorizzation.add('DEFAULT', {});
 const session = { idUser: 1 };
 
 describe('Test', function() {
+	beforeEach(() => {
+		jest.resetModules();
+	});
+
 	it('With correct data', async() => {
 		const result = await Authorizzation.check(
 			Authorizzation.LOGGED,
@@ -44,7 +48,7 @@ describe('Test', function() {
 			undefined,
 			null
 		);
-		expect(result.status).toBe(false);
+		expect(result.status).toBe(true);
 	});
 
 	it('With default error function', async() => {
@@ -56,25 +60,9 @@ describe('Test', function() {
 		expect(result.status).toBe(false);
 	});
 
-	it('With a not AuthorizzationRecord', () => {
-		expect(async() => {
-			const result = await Authorizzation.check(
-				[{
-					check: (session, req) => {
-						return session == undefined;
-					},
-					success: () => {
-						console.log('Authorizzation success');
-					},
-					error: () => {
-						console.log('Authorizzation fail');
-						return 'You are not logged';
-					}
-				}],
-				undefined,
-				null
-			);
-			console.log(this);
+	it('With a not AuthorizzationRecord', async() => {
+		await expect(() => {
+			const result = Authorizzation.check([null], undefined, null);
 		}).toThrow();
 	});
 });
