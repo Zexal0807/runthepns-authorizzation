@@ -1,6 +1,6 @@
 const AuthorizzationRecord = require('./AuthorizzationRecod');
 
-module.exports = new(class Authorizzation {
+class Authorizzation {
 	add(name, options) {
 		this[name] = new AuthorizzationRecord(options);
 	}
@@ -30,12 +30,12 @@ module.exports = new(class Authorizzation {
 			} else {
 				ret.status = false;
 				var err = record.error();
-				if (err != null) {
-					ret.errors.push(err);
-				}
+				ret.errors.push(err);
 			}
 		});
 
 		return ret;
 	}
-})();
+}
+
+module.exports = new Authorizzation();
