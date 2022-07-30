@@ -1,6 +1,4 @@
-const assert = require('assert');
-
-const Authorizzation = require('./../index');
+const Authorizzation = require('../index');
 
 Authorizzation.add('LOGGED', {
 	check: (session) => {
