@@ -23,7 +23,7 @@ If the aforementioned documentation is not clear or contains errors, please repo
 
 ## Installation
 
-1. `npm install https://github.com/Runtheons/runtheons-authorizzation#v1.4.3` to add the package to the project
+1. `npm install https://github.com/Runtheons/runtheons-authorizzation#v1.4.4` to add the package to the project
 
 # Use
 
