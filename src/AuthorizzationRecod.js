@@ -3,10 +3,10 @@ module.exports = class AuthorizzationRecord {
 		return session == undefined;
 	};
 	success = () => {
-		console.log('Authorizzation success');
+		// console.log('Authorizzation success');
 	};
 	error = () => {
-		console.log('Authorizzation fail');
+		// console.log('Authorizzation fail');
 		return 'You are not logged';
 	};
 
