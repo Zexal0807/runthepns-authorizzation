@@ -2,15 +2,15 @@ const AuthorizzationRecord = require('./AuthorizzationRecod');
 
 class Authorizzation {
 	add(name, options) {
-		this[name] = new AuthorizzationRecord(options);
-	}
-
-	check(requiredAuthorizzationRecord, session, req) {
-		if (!Array.isArray(requiredAuthorizzationRecord)) {
-			requiredAuthorizzationRecord = [requiredAuthorizzationRecord];
+			this[name] = new AuthorizzationRecord(options);
+		}
+		// rar = requiredAuthorizzationRecords
+	check(rar, session, req) {
+		if (!Array.isArray(rar)) {
+			rar = [rar];
 		}
 		if (
-			requiredAuthorizzationRecord.filter(
+			rar.filter(
 				(record) => !(record instanceof AuthorizzationRecord)
 			).length != 0
 		) {
@@ -20,15 +20,15 @@ class Authorizzation {
 		}
 
 		var ret = {
-			status: true,
+			status: false,
 			errors: []
 		};
 
-		requiredAuthorizzationRecord.forEach((record) => {
+		rar.forEach((record) => {
 			if (record.check(session, req)) {
 				record.success();
+				ret.status = true;
 			} else {
-				ret.status = false;
 				var err = record.error();
 				ret.errors.push(err);
 			}
