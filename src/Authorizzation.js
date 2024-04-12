@@ -20,7 +20,7 @@ class Authorizzation {
 		}
 
 		var ret = {
-			status: false,
+			status: rar.length == 0 ? true : false,
 			errors: []
 		};
 
